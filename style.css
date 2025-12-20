@@ -33,6 +33,7 @@ html, body {
     --surface-color-hover: rgba(255, 255, 255, 0.28); /** adicionei melhoria: hover mais visível no light **/
     --highlight-color: rgba(0, 0, 0, 0.2);
     --switch-bg-url: url(./assets/sun.svg);
+
 } 
 
 /* =========================================================
@@ -44,9 +45,10 @@ body {
     color: var(--text-color);
 
     display: flex; /* usa flexbox para centralizar o conteúdo */
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column;/* organiza os elementos em coluna */
+    align-items: center; /* centraliza horizontalmente */
     min-height: 100vh; /* melhoria: garante fundo completo em celulares */
+
 }
 
 /* =========================================================
@@ -55,7 +57,7 @@ body {
 #container {
     width: 100%; 
     max-width: 420px; /* tamanho ideal de portfólio mobile */
-    display: flex;
+    display: flex; /* usa flexbox para organizar os elementos */
     flex-direction: column;
     align-items: center;
     gap: 20px; /* Espaço entre a imagem, o texto e os botões */
@@ -107,12 +109,13 @@ body {
     left: 0;
     cursor: pointer; /* indica que é clicável */
     transition: 0.25s ease; /* melhoria: animação suave */
+    animation: 0.4s slide-out forwards; /* melhoria: animação suave ao mudar de tema */
 }
 
 /* Botão no tema claro se move para a direita */
 .light #switch button {
-    right: 0;
-    left: initial;
+    animation: 0.4s slide-in forwards; /* melhoria: animação suave ao mudar de tema */
+    
 }
 
 /* Fundo do switch */
@@ -244,5 +247,61 @@ footer a {
 @media (min-width: 1024px) { /* desktops maiores */
   #container { 
     max-width: 800px; /* aumenta o container principal */
+  }
+}
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes slide-in { /* animação para o botão de troca de tema */
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+@keyframes
+slide-out {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0;
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO — GIRO DO PERFIL (MOEDA)
+========================================================= */
+
+/* prepara o box para animação 3D */
+#box {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* classe aplicada via JS */
+#box.flip-box {
+  animation: flipBox 0.8s ease-in-out;
+}
+
+
+
+
+
+/* keyframes do giro */
+@keyframes flipBox {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(90deg);
+  }
+
+  100% {
+    transform: rotateY(180deg);
   }
 }

@@ -1,17 +1,24 @@
-function toggleMode() { // Função para alternar entre os modos claro e escuro
-    const html = document.documentElement; // Seleciona o elemento <html>
-    html.classList.toggle("light"); // Alterna a classe "light" no elemento <html>
+function toggleMode() {
+  const html = document.documentElement
+  const box = document.querySelector("#box")
+  const img = document.querySelector("#profile-img")
 
-    const img = document.querySelector("#profile-img"); // Seleciona a imagem do perfil
+  // inicia animação
+  box.classList.add("flip-box")
 
-    if (html.classList.contains("light")) { // Verifica se a classe "light" está presente
+  // troca tema + imagem no meio do giro
+  setTimeout(() => {
+    html.classList.toggle("light")
 
-        img.setAttribute("src", "./assets/perfil-light.png") // Altera a imagem para o modo claro
+    if (html.classList.contains("light")) {
+      img.src = "./assets/perfil-light.png"
+    } else {
+      img.src = "./assets/perfil-dark.png"
+    }
+  }, 400)
 
-  }    else {
-
-     img.setAttribute("src", "./assets/perfil-dark.png") // Altera a imagem para o modo escuro
-    
-}
-
+  // remove a classe para permitir novo clique
+  setTimeout(() => {
+    box.classList.remove("flip-box")
+  }, 800)
 }
